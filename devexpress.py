@@ -3,10 +3,9 @@ from playwright.sync_api import sync_playwright
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=False)
     page = browser.new_page()
-
     page.goto("https://devexpress.github.io/testcafe/example/")
-    page.wait_for_selector("#developer-name")
 
+    page.wait_for_selector("#developer-name")
     page.type("#developer-name", "Mikhail Yakovlev", delay=100)
     page.wait_for_timeout(1000)
 
@@ -32,8 +31,7 @@ with sync_playwright() as p:
     page.keyboard.press("ArrowRight")
     page.wait_for_timeout(1000)
 
-    text = "Testing is hard, but it is possible"
-    page.type("#comments", text, delay=100)
+    page.fill("#comments", "Testing is hard, but it is possible")
     page.wait_for_timeout(1000)
 
     page.click("#submit-button")
